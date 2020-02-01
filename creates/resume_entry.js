@@ -1,40 +1,22 @@
 const resumeEntry = (z, bundle) => {
-
   return z.request({
       method: 'GET',
       url: `https://api.keeping.nl/v1/${bundle.inputData.organisation_id}/time-entries/last`,
-      params: {
-        user_id: bundle.inputData.user_id,
-        ongoing: 0,
-        locked: 0
-      },
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${bundle.authData.access_token}`
-      },
-      body: {}
+      params: {user_id: bundle.inputData.user_id, ongoing: 0, locked: 0},
+      headers: { Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`}
   })
   .then(response => {
       response.throwForStatus();
-      const results = z.JSON.parse(response.content);
+      const time_entry = z.JSON.parse(response.content).time_entry;
 
       return z.request({
           method: 'POST',
-          url: `https://api.keeping.nl/v1/${bundle.inputData.organisation_id}/time-entries/${results.time_entry.id}/resume`,
-          params: {},
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${bundle.authData.access_token}`
-          },
-          body: {}
+          url: `https://api.keeping.nl/v1/${bundle.inputData.organisation_id}/time-entries/${time_entry.id}/resume`,
+          headers: {Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`}
       })
       .then(response => {
           response.throwForStatus();
-          const results = z.JSON.parse(response.content);
-
-          return results;
+          return z.JSON.parse(response.content);
       });
   });
 };

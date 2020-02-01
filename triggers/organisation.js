@@ -12,9 +12,9 @@ module.exports = {
   noun: 'Organisation',
 
   display: {
-    label: 'Get Organisation',
-    description: 'Triggers on a new organisation.',
-    hidden: false
+    label: 'New Organisation',
+    description: 'Triggers when you are added to a new organisation.',
+    hidden: true
   },
 
   operation: {

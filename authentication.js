@@ -50,7 +50,7 @@ module.exports = {
       },
       removeMissingValuesFrom: {}
     },
-    scope: 'time reporting team project_management',
+    scope: 'time team project_management',
     autoRefresh: true
   }
 };
