@@ -42,5 +42,10 @@ module.exports = {
       {key: 'code'}
     ],
     perform: createProject,
+    outputFields: [
+      {key: 'id', label: 'Project ID'},
+      {key: 'name', label: 'Project name'},
+      {key: 'code', label: 'Code'}
+    ]
   }
 };

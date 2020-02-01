@@ -33,5 +33,10 @@ module.exports = {
       {key: 'code'}
     ],
     perform: createClient,
+    outputFields: [
+      {key: 'id', label: 'Client ID'},
+      {key: 'name', label: 'Client name'},
+      {key: 'code', label: 'Code'}
+    ]
   }
 };

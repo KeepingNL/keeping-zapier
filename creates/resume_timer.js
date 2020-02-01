@@ -48,6 +48,17 @@ module.exports = {
         dynamic: 'user.id.first_name'
       }
     ],
-    perform: resumeTimer
+    perform: resumeTimer,
+    outputFields: [
+      {key: 'id', label: 'Time entry ID'},
+      {key: 'user_id', label: 'User ID'},
+      {key: 'project_id', label: 'Project ID'},
+      {key: 'task_id', label: 'Task ID'},
+      {key: 'note', label: 'Note'},
+      {key: 'hours', label: 'Hours'},
+      {key: 'start', label: 'Start'},
+      {key: 'end', label: 'End'},
+      {key: 'ongoing', label: 'Ongoing'}
+    ]
   }
 };
