@@ -18,7 +18,7 @@ const testAuth = (z, bundle) => {
       headers: { Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`},
     }).then(response => {
       response.throwForStatus();
-      const me = z.JSON.parse(response.content).user;
+      return z.JSON.parse(response.content).user;
     });
   });
 };
