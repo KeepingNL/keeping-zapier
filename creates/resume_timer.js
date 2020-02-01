@@ -1,4 +1,4 @@
-const resumeEntry = (z, bundle) => {
+const resumeTimer = (z, bundle) => {
   return z.request({
       method: 'GET',
       url: `https://api.keeping.nl/v1/${bundle.inputData.organisation_id}/time-entries/last`,
@@ -23,11 +23,11 @@ const resumeEntry = (z, bundle) => {
 
 module.exports = {
 
-  key: 'resume_entry',
+  key: 'resume_timer',
   noun: 'Time entry',
 
   display: {
-    label: 'Resume time entry',
+    label: 'Resume timer',
     description: 'Resume your last time entry',
     hidden: false,
     important: true
@@ -36,18 +36,18 @@ module.exports = {
   operation: {
     inputFields: [
       {
-          key: 'organisation_id',
-          required: true,
-          label: 'Organisation',
-          dynamic: 'organisation.id.name'
+        key: 'organisation_id',
+        required: true,
+        label: 'Organisation',
+        dynamic: 'organisation.id.name'
       },
       {
-          key: 'user_id',
-          required: true,
-          label: 'User',
-          dynamic: 'user.id.first_name'
+        key: 'user_id',
+        required: true,
+        label: 'User',
+        dynamic: 'user.id.first_name'
       }
     ],
-    perform: resumeEntry
+    perform: resumeTimer
   }
 };

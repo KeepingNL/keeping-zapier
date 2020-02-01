@@ -16,7 +16,7 @@ module.exports = {
   noun: 'Time entry',
 
   display: {
-    label: 'Create a time entry',
+    label: 'Create a Time Entry',
     description: 'Creates a time entry.'
   },
 

@@ -10,7 +10,10 @@ zapier.tools.env.inject();
 
 describe('My App', () => {
   it('should run creates.create_task', done => {
-    const bundle = { inputData: {} };
+    const bundle = {
+      authData: {access_token: process.env.ACCESS_TOKEN},
+      inputData: {organisation_id: 1},
+    };
 
     appTester(App.creates.create_task.operation.perform, bundle)
       .then(results => {

@@ -10,7 +10,10 @@ zapier.tools.env.inject();
 
 describe('My App', () => {
   it('should run creates.stop_timer', done => {
-    const bundle = { inputData: {} };
+    const bundle = {
+      authData: {access_token: process.env.ACCESS_TOKEN},
+      inputData: {organisation_id: 1, user_id: 1},
+    };
 
     appTester(App.creates.stop_timer.operation.perform, bundle)
       .then(results => {

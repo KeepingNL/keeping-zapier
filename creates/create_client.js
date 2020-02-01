@@ -1,23 +1,21 @@
 // create a particular create_client by name
 const createCreateclient = (z, bundle) => {
-  const responsePromise = z.request({
+  return z.request({
     method: 'POST',
     url: 'https://jsonplaceholder.typicode.com/posts',
     body: JSON.stringify({
       name: bundle.inputData.name
     })
-  });
-  return responsePromise
-    .then(response => z.JSON.parse(response.content));
+  }).then(response => z.JSON.parse(response.content));
 };
 
 module.exports = {
   key: 'create_client',
-  noun: 'Create_client',
+  noun: 'Client',
 
   display: {
-    label: 'Create Create_client',
-    description: 'Creates a create_client.'
+    label: 'Create Client',
+    description: 'Creates a client.'
   },
 
   operation: {
