@@ -33,6 +33,13 @@ module.exports = {
       {key: 'code'}
     ],
     perform: createTask,
+    sample: {
+      id: 34567,
+      name: "Marketing",
+      code: null,
+      direct: true,
+      state: "active"
+    },
     outputFields: [
       {key: 'id', label: 'Task ID'},
       {key: 'name', label: 'Task name'},

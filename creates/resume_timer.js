@@ -49,6 +49,28 @@ module.exports = {
       }
     ],
     perform: resumeTimer,
+    sample: {
+      id: 456789123,
+      user_id: 789456,
+      date: "2020-02-01",
+      purpose: "work",
+      project_id: 56790,
+      task_id: 34567,
+      note: "Working on some e-mails",
+      external_references: [
+        {
+          id: "d69e192e3827b90e9d13e888317113e1",
+          type: "generic_work_reference",
+          name: "Send e-mail to venue",
+          url: "https://planner.ellas-evenementen.nl/todos/123456789"
+        }
+      ],
+      start: "2020-02-01T13:45:10+01:00",
+      end: null,
+      hours: null,
+      ongoing: true,
+      locked: false
+    },
     outputFields: [
       {key: 'id', label: 'Time entry ID'},
       {key: 'user_id', label: 'User ID'},

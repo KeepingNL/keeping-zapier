@@ -42,6 +42,30 @@ module.exports = {
       {key: 'code'}
     ],
     perform: createProject,
+    sample: {
+      id: 56790,
+      client: {
+        id: 123456,
+        name: "Ms. Francis",
+        code: null,
+        state: "active"
+      },
+      name: "Branch Opening",
+      code: "fr1",
+      direct: "is_direct_through_task_assignments",
+      task_assignments: [
+          {
+              task_id: 34567,
+              direct: true
+          }
+      ],
+      participations: [
+        {
+            "user_id": 789456
+        }
+      ],
+      state: "active"
+    },
     outputFields: [
       {key: 'id', label: 'Project ID'},
       {key: 'name', label: 'Project name'},

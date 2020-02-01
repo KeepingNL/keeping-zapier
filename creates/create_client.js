@@ -33,6 +33,12 @@ module.exports = {
       {key: 'code'}
     ],
     perform: createClient,
+    sample: {
+      id: 123456,
+      name: "Ms. Francis",
+      code: null,
+      state: "active"
+    },
     outputFields: [
       {key: 'id', label: 'Client ID'},
       {key: 'name', label: 'Client name'},
