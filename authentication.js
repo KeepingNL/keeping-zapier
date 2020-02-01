@@ -1,5 +1,5 @@
 
-const testAuth = (z /*, bundle*/) => {
+const testAuth = (z, bundle) => {
   return z.request({
     method: 'GET',
     url: 'https://api.keeping.nl/v1/organisations',
@@ -12,11 +12,9 @@ const testAuth = (z /*, bundle*/) => {
       throw new Error('You do not have any organisation');
     }
 
-    let firstOrganisation = organisations[0];
-
     return z.request({
       method: 'GET',
-      url: `https://api.keeping.nl/v1/${firstOrganisation.id}/users/me`,
+      url: `https://api.keeping.nl/v1/${organisations[0].id}/users/me`,
       headers: { Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`},
     }).then(response => {
       response.throwForStatus();
