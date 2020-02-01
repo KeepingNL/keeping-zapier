@@ -71,7 +71,7 @@ module.exports = {
       removeMissingValuesFrom: {}
     },
     scope: 'time team project_management',
-    autoRefresh: true,
-    connectionLabel: '{{first_name}} {{surname}}'
-  }
+    autoRefresh: true
+  },
+  connectionLabel: '{{first_name}} {{surname}}'
 };
