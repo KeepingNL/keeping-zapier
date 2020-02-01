@@ -19,7 +19,8 @@ module.exports = {
   display: {
     label: 'New Time Entry',
     description: 'Triggers when a new time entry is created for today.',
-    hidden: false
+    hidden: false,
+    important: true
   },
 
   operation: {
