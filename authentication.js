@@ -1,13 +1,33 @@
+
+const testAuth = (z /*, bundle*/) => {
+  return z.request({
+    method: 'GET',
+    url: 'https://api.keeping.nl/v1/organisations',
+    headers: { Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`},
+  }).then((response) => {
+    response.throwForStatus();
+    let organisations = z.JSON.parse(response.content).organisations;
+
+    if (organisations.length == 0) {
+      throw new Error('You do not have any organisation');
+    }
+
+    let firstOrganisation = organisations[0];
+
+    return z.request({
+      method: 'GET',
+      url: `https://api.keeping.nl/v1/${firstOrganisation.id}/users/me`,
+      headers: { Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`},
+    }).then(response => {
+      response.throwForStatus();
+      const me = z.JSON.parse(response.content).user;
+    });
+  });
+};
+
 module.exports = {
   type: 'oauth2',
-  test: {
-    url: 'https://api.keeping.nl/v1/organisations',
-    method: 'GET',
-    params: {},
-    headers: { Authorization: 'Bearer {{bundle.authData.access_token}}' },
-    body: {},
-    removeMissingValuesFrom: {}
-  },
+  test: testAuth,
   oauth2Config: {
     authorizeUrl: {
       method: 'GET',
@@ -51,6 +71,7 @@ module.exports = {
       removeMissingValuesFrom: {}
     },
     scope: 'time team project_management',
-    autoRefresh: true
+    autoRefresh: true,
+    connectionLabel: '{{first_name}} {{surname}}'
   }
 };
