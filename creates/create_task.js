@@ -1,14 +1,15 @@
 // create a particular create_task by name
-const createCreatetask = (z, bundle) => {
-  const responsePromise = z.request({
-    method: 'POST',
-    url: 'https://jsonplaceholder.typicode.com/posts',
-    body: JSON.stringify({
-      name: bundle.inputData.name
-    })
+const createTask = (z, bundle) => {
+  return z.request({
+      method: 'POST',
+      url: `https://api.keeping.nl/v1/${bundle.inputData.organisation_id}/tasks`,
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`},
+      body: { name: bundle.inputData.name, code: ('code' in bundle.inputData) ? bundle.inputData.code : null }
+  })
+  .then(response => {
+      response.throwForStatus();
+      return z.JSON.parse(response.content).task;
   });
-  return responsePromise
-    .then(response => z.JSON.parse(response.content));
 };
 
 module.exports = {
@@ -17,23 +18,21 @@ module.exports = {
 
   display: {
     label: 'Create a Task',
-    description: 'Creates a task.'
+    description: 'Creates a new task.'
   },
 
   operation: {
     inputFields: [
-      {key: 'name', required: true}
+      {
+        key: 'organisation_id',
+        required: true,
+        label: 'Organisation',
+        dynamic: 'organisation.id.name'
+      },
+      {key: 'name', required: true},
+      {key: 'code'}
     ],
-    perform: createCreatetask,
+    perform: createTask,
 
-    sample: {
-      id: 1,
-      name: 'Test'
-    },
-
-    outputFields: [
-      {key: 'id', label: 'ID'},
-      {key: 'name', label: 'Name'}
-    ]
   }
 };

@@ -1,14 +1,19 @@
 // create a particular create_project by name
-const createCreateproject = (z, bundle) => {
-  const responsePromise = z.request({
-    method: 'POST',
-    url: 'https://jsonplaceholder.typicode.com/posts',
-    body: JSON.stringify({
-      name: bundle.inputData.name
-    })
+const createProject = (z, bundle) => {
+   return z.request({
+      method: 'POST',
+      url: `https://api.keeping.nl/v1/${bundle.inputData.organisation_id}/projects`,
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${bundle.authData.access_token}`},
+      body: {
+        name: bundle.inputData.name,
+        client_id: ('client_id' in bundle.inputData) ? bundle.inputData.client_id : null,
+        code: ('code' in bundle.inputData) ? bundle.inputData.code : null
+      }
+  })
+  .then(response => {
+      response.throwForStatus();
+      return z.JSON.parse(response.content).project;
   });
-  return responsePromise
-    .then(response => z.JSON.parse(response.content));
 };
 
 module.exports = {
@@ -17,23 +22,25 @@ module.exports = {
 
   display: {
     label: 'Create Project',
-    description: 'Creates a project.'
+    description: 'Creates a new project.'
   },
 
   operation: {
     inputFields: [
-      {key: 'name', required: true}
+      {
+        key: 'organisation_id',
+        required: true,
+        label: 'Organisation',
+        dynamic: 'organisation.id.name'
+      },
+      {key: 'name', required: true},
+      {
+        key: 'client_id',
+        label: 'Client',
+        dynamic: 'client.id.name'
+      },
+      {key: 'code'}
     ],
-    perform: createCreateproject,
-
-    sample: {
-      id: 1,
-      name: 'Test'
-    },
-
-    outputFields: [
-      {key: 'id', label: 'ID'},
-      {key: 'name', label: 'Name'}
-    ]
+    perform: createProject,
   }
 };

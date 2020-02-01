@@ -12,7 +12,7 @@ describe('My App', () => {
   it('should run creates.create_task', done => {
     const bundle = {
       authData: {access_token: process.env.ACCESS_TOKEN},
-      inputData: {organisation_id: 1},
+      inputData: {organisation_id: 1, name: 'New Zapier Task'},
     };
 
     appTester(App.creates.create_task.operation.perform, bundle)

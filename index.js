@@ -4,7 +4,6 @@ const StopTimer = require('./creates/stop_timer.js');
 const CreateClient = require('./creates/create_client.js');
 const CreateProject = require('./creates/create_project.js');
 const CreateTask = require('./creates/create_task.js');
-const CreateEntry = require('./creates/create_entry.js');
 const OrganisationTrigger = require('./triggers/organisation');
 const UserTrigger = require('./triggers/user');
 const ProjectTrigger = require('./triggers/project');
@@ -22,7 +21,6 @@ module.exports = {
     [CreateClient.key]: CreateClient,
     [CreateProject.key]: CreateProject,
     [CreateTask.key]: CreateTask,
-    [CreateEntry.key]: CreateEntry,
   },
   triggers: { 
   	[OrganisationTrigger.key]: OrganisationTrigger,

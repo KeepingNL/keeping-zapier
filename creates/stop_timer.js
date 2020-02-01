@@ -16,7 +16,7 @@ const stopTimer = (z, bundle) => {
       })
       .then(response => {
           response.throwForStatus();
-          return z.JSON.parse(response.content);
+          return z.JSON.parse(response.content).time_entry;
       });
   });
 };
